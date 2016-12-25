@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <ctype.h>
 #include <stdlib.h>
+#include <string.h>
 #include "temp_convert.h"
 #include "temp_converters.h"
 
@@ -12,11 +13,15 @@ int main(int argc, char *argv[]) {
   	int arg;
   	char intype = 'c';
   	char outtype = 'f';
+  	int verbose = 0;
 
 	opterr = 0;
 
-	while ((arg = getopt (argc, argv, "hi:o:")) != -1) {
+	while ((arg = getopt (argc, argv, "vhi:o:")) != -1) {
 		switch (arg) {
+			case 'v':
+				verbose = 1;
+				break;
 			case 'i':
 				intype = *optarg;
 				break;
@@ -24,7 +29,7 @@ int main(int argc, char *argv[]) {
 				outtype = *optarg;
 				break;
 			case 'h':
-				printf("Usage: %s -i (c|k|f) -o (c|k|f)\n", argv[0]);
+				printf("Usage: %s -i (c|k|f) -o (c|k|f) -v\n", argv[0]);
 				return 0;
 			case '?':
 				if (optopt == 'c')
@@ -40,9 +45,12 @@ int main(int argc, char *argv[]) {
 			abort ();
 		}
 	}
-	if (intype == outtype) {
-		fprintf(stderr, "-i and -o are both %c!\n", intype);
-		return 1;
+
+	if (verbose) {	
+		printf(
+			"Converting from %s to %s...\n", 
+			opt_to_string(intype), 
+			opt_to_string(outtype));
 	}
 
 	double (*convertFnPtr)(double);
@@ -59,6 +67,8 @@ int main(int argc, char *argv[]) {
 		convertFnPtr = &fahrenheit_to_kelvin;
 	else if (intype == 'f' & outtype == 'c') 
 		convertFnPtr = &fahrenheit_to_celsius;
+	else if (intype == outtype) 
+		convertFnPtr = &identity;
 
 	double temps[100];
 	double temp;
@@ -70,4 +80,18 @@ int main(int argc, char *argv[]) {
 	printf("\n");
 
 	return(0);
+}
+
+// http://stackoverflow.com/questions/1496313/returning-c-string-from-a-function
+const char* opt_to_string(char type) {
+	static char* temps[] = {"Kelvin", "Fahrenheit", "Celsius"}; 
+	switch(type) {
+		case 'k':
+		return temps[0];
+		case 'f':
+		return temps[1];
+		break;
+		case 'c':
+		return temps[2];
+	};
 }

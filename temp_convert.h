@@ -7,3 +7,4 @@
 #define ANSI_COLOR_RESET   "\x1b[0m"
 #define ANSI_COLOR_WHITE   "\x1b[47m"
 
+const char* opt_to_string(char type);

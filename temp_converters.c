@@ -24,3 +24,6 @@ double fahrenheit_to_celsius(double temp) {
 	return ((temp - FAHRENHEIT_OFFSET) / CELSIUS_TO_FAHRENHEIT);
 }
 
+double identity(double temp) {
+	return (temp);
+}

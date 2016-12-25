@@ -12,5 +12,6 @@ double kelvin_to_fahrenheit (double temp);
 double kelvin_to_celsius (double temp);
 double fahrenheit_to_kelvin (double temp);
 double fahrenheit_to_celsius (double temp);
+double identity(double temp);
 
 #endif 
