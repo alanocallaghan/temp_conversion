@@ -2,9 +2,9 @@
 #include <math.h>
 #include <unistd.h>
 #include <ctype.h>
-#include "hello_world.h"
 #include <stdlib.h>
-#include "temp_conversion.h"
+#include "temp_convert.h"
+#include "temp_converters.h"
 
 int main(int argc, char *argv[]) {
 

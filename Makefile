@@ -1,11 +1,11 @@
 CC = gcc
 LIBS = -lm
-DEPS = temp_conversion.h hello_world.h 
-OBJ = temp_conversion.o hello_world.o
+DEPS = temp_converters.h temp_convert.h 
+OBJ = temp_converters.o temp_convert.o
 CFLAGS=-I.
 
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-hello_world: $(OBJ) 
+temp_convert: $(OBJ) 
 	$(CC) $(CFLAGS) $^ -o $@ $(LIBS)

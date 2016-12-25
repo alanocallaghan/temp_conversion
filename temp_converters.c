@@ -1,4 +1,4 @@
-#include "temp_conversion.h"
+#include "temp_converters.h"
 
 double celsius_to_fahrenheit(double temp) {
 	return ((temp * CELSIUS_TO_FAHRENHEIT) + FAHRENHEIT_OFFSET);
