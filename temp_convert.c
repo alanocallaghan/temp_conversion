@@ -90,7 +90,6 @@ const char* opt_to_string(char type) {
 		return temps[0];
 		case 'f':
 		return temps[1];
-		break;
 		case 'c':
 		return temps[2];
 	};
