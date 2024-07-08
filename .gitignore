@@ -1,2 +1,11 @@
 temp_convert
 *.o
+aclocal.m4
+configure*
+autom4te.cache/
+.deps
+compile
+depcomp
+missing
+config.status
+install-sh
